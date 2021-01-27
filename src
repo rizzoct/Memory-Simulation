@@ -1,0 +1,169 @@
+import java.util.Scanner;
+import java.util.Random;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Timer;
+public class Simulation {
+
+    Scanner keyboard = new Scanner(System.in);
+    protected static int i;
+    protected static int count;
+    static Queue<Integer> A = new LinkedList<>();
+    static Queue<Integer> B = new LinkedList<>();
+    static Queue<Integer> C = new LinkedList<>();
+    static Queue<Integer> Ajob = new LinkedList<>();
+    static Queue<Integer> Bjob = new LinkedList<>();
+    static Queue<Integer> Cjob = new LinkedList<>();
+
+    public void randomOrInput()
+    {
+
+        System.out.println("Would you like a random number or manual seed? Please enter 'R' for random and 'M' for manual: ");
+        String answer = keyboard.nextLine();
+        if(answer.equals("R"))
+        {
+            Random number = new Random();
+            this.i = number.nextInt(201);
+            count++;
+        }
+        else if(answer.equals("M"))
+        {
+            System.out.println("Please enter the number you would like: ");
+            String manual = keyboard.nextLine();
+            this.i = Integer.parseInt(manual);
+            count++;
+        }
+        System.out.println(i);
+
+
+    }
+    /*public int jobEnter()
+    {
+        if(this.i <= 50)
+        {
+            A.add(this.i);
+        }
+        else if(this.i >= 51 || this.i < 100)
+        {
+            B.add(this.i);
+        }
+        else if(this.i >= 101 || this.i <200)
+        {
+            C.add(this.i);
+        }
+        return this.i;
+
+    }*/
+    public void AjobExit() throws InterruptedException {
+        try{Thread.sleep(2500);}
+        catch(InterruptedException ex){
+            Thread.currentThread().interrupt();
+        }
+        Ajob.remove();
+
+    }
+    public void BjobExit() throws InterruptedException
+    {
+        Thread.sleep(5000);
+        Bjob.remove();
+    }
+    public void CjobExit() throws InterruptedException
+    {
+        Thread.sleep(7500);
+        Bjob.remove();
+    }
+
+
+    /*public void addJob()
+    {
+        if(this.i <=50)
+        {
+            this.A.add(this.i);
+        }
+        else if(this.i >= 51 && this.i <= 100)
+        {
+            this.B.add(this.i);
+        }
+        else if(this.i >=101 && this.i <= 200)
+        {
+            this.C.add(this.i);
+        }
+        else
+        {
+            System.out.println("Critical Error. Terminating program.");
+            System.exit(0);
+        }
+        System.out.println(A);
+        System.out.println(B);
+        System.out.println(C);
+    }*/
+
+    public static void main(String[] args) {
+        for(int k = 0; k <=200; k++) {
+            new Simulation().randomOrInput();
+            //new Simulation().jobEnter();
+            //new Simulation().addJob();
+            {
+                if(i <= 50)
+                {
+                    if(Ajob.isEmpty())
+                    {
+                        Ajob.add(i);
+                    }
+                    else
+                    A.add(i);
+                }
+                else if(i >= 51 && i <=100)
+                {
+                    if(Bjob.isEmpty())
+                    {
+                        Bjob.add(i);
+                    }
+                    else
+                    B.add(i);
+                }
+                else if(i >= 101 && i <=200)
+                {
+                    if(Cjob.isEmpty())
+                    {
+                        Cjob.add(i);
+                    }
+                    else
+                    C.add(i);
+                }
+                else
+                {
+                    System.out.println("Critical Error. Terminating program.");
+                    System.exit(0);
+                }
+
+
+
+                System.out.println(A);
+                System.out.println(B);
+                System.out.println(C);
+                System.out.println(Ajob);
+                System.out.println(Bjob);
+                System.out.println(Cjob);
+                /*if(count <=200) {
+                    try {
+                        Thread.sleep(2500);
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                    Ajob.remove();
+                }
+                if(count <=200) {
+                    try {
+                        Thread.sleep(2500);
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                    Bjob.remove();
+                }*/
+            }
+
+        }
+    }
+
+}
